@@ -89,16 +89,19 @@ async def store_authenticated_state(browser):
     # Закрываем контекст после теста
     await context.close()
 
-
 @pytest_asyncio.fixture(scope="function")
-async def authenticated_context(browser, store_authenticated_state):
-    # Создаем новый контекст с использованием сохраненного состояния
-    context = await browser.new_context(storage_state="playwright/.auth/customer01.json")
-    
-    # Теперь этот контекст уже будет авторизован
+async def authenticated_context(browser):
+    # Check if there is a saved session
+    storage_path = "playwright/.auth/customer01.json"
+    if not os.path.exists(storage_path):
+        raise FileNotFoundError(
+            f"Auth state not found at {storage_path}. Run the session initializer test first."
+        )
+
+    context = await browser.new_context(storage_state=storage_path)
     yield context
-    # Закрываем контекст после тестов
     await context.close()
+
 
 
 @pytest_asyncio.fixture(scope="session")
