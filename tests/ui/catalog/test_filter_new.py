@@ -9,29 +9,31 @@ class TestFilter:
     @pytest.mark.asyncio
     async def test_filter_by_category(self, page:Page, api_request_context):
 
+        # Initialize API and UI helper objects
         products_api = ProductsAPI(api_request_context)
         filter_ui = FilterPanel(page)
         catalog = CatalogPage(page)
 
+        # Step 1: Define the category to be tested
         selected_category = "Pliers"
 
+        # Step 2: Get the category ID for "Pliers" from API
         category_id = await products_api.get_category_id_by_name(selected_category)
         print(category_id)
-        # Получаем все продукты для выбранной категории через API
-        products_api = await products_api.get_products_with_optional_filters(category_id=category_id, price_max=100)
 
+        # Step 3: Get products from API filtered by category and price
+        products_from_api = await products_api.get_products_with_optional_filters(
+            category_id=category_id, price_max=100
+        )
+
+        # Step 4: Apply category filter in UI
         await filter_ui.click_on_category(selected_category)
 
-        # 3. Получаем продукты из UI
+        # Step 5: Get list of product titles displayed in the UI
         ui_product_titles = await catalog.get_lower_case_titles_from_ui()
 
-        # Сравниваем товары по названиям
-        for product in products_api:
-            product_name_api = product['name'].lower()  # Приводим к нижнему регистру
+        # Step 6: Compare product titles from API with UI to ensure they match
+        for product in products_from_api:
+            product_name_api = product['name'].lower()  # normalize for case-insensitive match
             assert product_name_api in ui_product_titles, \
                 f"Product {product_name_api} from API is not found in UI under category {selected_category}"
-
-
-
-
-

@@ -1,11 +1,11 @@
 import pytest
-from playwright.async_api import expect
+from playwright.async_api import expect, Page
 
 
 class TestAuthentication:
 
     @pytest.mark.asyncio
-    async def test_user_can_go_to_account_page(self, store_authenticated_state):
+    async def test_user_can_go_to_account_page(self, page: Page, store_authenticated_state):
         # Получаем контекст с авторизованным состоянием
         context = store_authenticated_state
 
