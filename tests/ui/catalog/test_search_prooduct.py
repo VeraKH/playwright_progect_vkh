@@ -7,9 +7,9 @@ from pages.catalog.product_grid_page import CatalogPage
 class TestSearchProduct:
 
     @pytest.mark.asyncio
-    async def test_home_page_search_for_product(self, page: Page):
-        search_bar = SearchBar(page)
-        product_grid = CatalogPage(page)
+    async def test_home_page_search_for_product(self, main_page: Page):
+        search_bar = SearchBar(main_page)
+        product_grid = CatalogPage(main_page)
 
         await search_bar.fill_data_in_input(search_bar.SEARCH_DATA)
         await search_bar.search_button_click()

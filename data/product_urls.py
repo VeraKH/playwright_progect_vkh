@@ -1,0 +1,5 @@
+products = {
+    "Pliers": "01JTG52YNYY6J0FHEBV2WZ9W0H",
+    "Combination Pliers": "01JTG8GW203E6E89N69K0439V2",
+    "Hammer": "01JTG8GW29SCESW1D18C1YK22Q"
+}

@@ -7,12 +7,12 @@ from pages.catalog.product_grid_page import CatalogPage
 class TestFilter:
 
     @pytest.mark.asyncio
-    async def test_filter_by_category(self, page:Page, api_request_context):
+    async def test_filter_by_category(self, main_page: Page, api_request_context):
 
         # Initialize API and UI helper objects
         products_api = ProductsAPI(api_request_context)
-        filter_ui = FilterPanel(page)
-        catalog = CatalogPage(page)
+        filter_ui = FilterPanel(main_page)
+        catalog = CatalogPage(main_page)
 
         # Step 1: Define the category to be tested
         selected_category = "Pliers"

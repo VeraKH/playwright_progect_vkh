@@ -42,16 +42,25 @@ async def browser_context(browser):
     yield context
     await context.close()
 
-
-# Фикстура для страницы (с скоупом class)
+# Фикстура для инициализации страницы (с скоупом class)
 @pytest_asyncio.fixture(scope="class")
 async def page(browser_context):
+    page = await browser_context.new_page()
+
+    yield page
+    await page.close()
+
+
+# Фикстура для главной страницы (с скоупом class)
+@pytest_asyncio.fixture(scope="class")
+async def main_page(browser_context):
     page = await browser_context.new_page()
     await page.goto("https://practicesoftwaretesting.com/")  # Загружаем сайт один раз
     await page.wait_for_load_state("networkidle")    
     
     yield page
     await page.close()
+
 
 
 # Фикстура для сохранения состояния сессии (просто авторизация)
@@ -113,21 +122,21 @@ async def api_request_context(playwright):
     await request_context.dispose()
 
 @pytest_asyncio.fixture
-async def logged_in_auth_page(page):
-    auth_page = AuthPage(page)
+async def logged_in_auth_page(main_page):
+    auth_page = AuthPage(main_page)
     await auth_page.open_login_page()
     await auth_page.login(email="user@example.com", password="Password123")
     return auth_page
 
 
 @pytest_asyncio.fixture
-async def main_menu(page):
-    return MainMenu(page)
+async def main_menu(main_page):
+    return MainMenu(main_page)
 
 @pytest_asyncio.fixture
-async def admin_page(page):
-    return AdminPage(page)
+async def admin_page(main_page):
+    return AdminPage(main_page)
 
 @pytest_asyncio.fixture
-async def auth_page(page):
-    return AuthPage(page)
+async def auth_page(main_page):
+    return AuthPage(main_page)
