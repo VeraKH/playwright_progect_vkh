@@ -1,6 +1,6 @@
 import pytest
 from playwright.async_api import expect, Page
-from pages.main_menu import MainMenu
+from pages.main_menu_page import MainMenu
 
 
 class TestHomePageMenu:

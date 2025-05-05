@@ -3,7 +3,7 @@ import pytest_asyncio
 from playwright.async_api import async_playwright, expect, APIRequestContext
 import os
 from pages.auth_page import AuthPage
-from pages.main_menu import MainMenu
+from pages.main_menu_page import MainMenu
 from pages.admin_page import AdminPage
 
 # Фикстура для event_loop с скоупом session

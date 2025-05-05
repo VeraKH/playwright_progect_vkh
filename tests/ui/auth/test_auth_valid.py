@@ -22,7 +22,7 @@ class TestAuthValid:
     # 2 Valid admin can log in
     @pytest.mark.parametrize("user_data, expected_text", valid_admin)
     @pytest.mark.asyncio
-    async def test_auth_leads_to_admin_account_page(self, page:Page, user_data, expected_text, admin_page):
+    async def test_auth_leads_to_user_account_page(self, page:Page, user_data, expected_text, admin_page):
         auth_page = AuthPage(page)
 
         await auth_page.login(email=user_data["email"], password=user_data["password"])

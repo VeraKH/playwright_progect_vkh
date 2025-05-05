@@ -1,8 +1,8 @@
 import pytest
 import asyncio
 from playwright.async_api import expect, Page
-from pages.catalog.search_bar import SearchBar
-from pages.catalog.product_grid import CatalogPage
+from pages.catalog.search_bar_page import SearchBar
+from pages.catalog.product_grid_page import CatalogPage
 
 class TestSearchProduct:
 

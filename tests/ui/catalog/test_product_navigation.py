@@ -1,8 +1,8 @@
 import pytest
 from playwright.async_api import expect, Page
-from pages.catalog.product_grid import CatalogPage
+from pages.catalog.product_grid_page import CatalogPage
 from pages.product.product_page import ProductPage
-from pages.main_menu import MainMenu
+from pages.main_menu_page import MainMenu
 from pages.auth_page import AuthPage
 from data.auth_test_data import valid_users
 

@@ -1,8 +1,8 @@
 import pytest
 from playwright.async_api import expect, Page
-from pages.catalog.filter_panel import FilterPanel
+from pages.catalog.filter_panel_page import FilterPanel
 from pages.api.products_api import ProductsAPI
-from pages.catalog.product_grid import CatalogPage
+from pages.catalog.product_grid_page import CatalogPage
 
 class TestFilter:
 
