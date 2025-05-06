@@ -2,7 +2,7 @@ import pytest
 from playwright.async_api import expect, Page
 from pages.catalog.filter_panel_page import FilterPanel
 from pages.api.products_api import ProductsAPI
-from pages.catalog.product_grid_page import CatalogPage
+from pages.catalog.product_grid_page import ProductGrid
 
 class TestFilter:
 
@@ -12,7 +12,7 @@ class TestFilter:
         # Initialize API and UI helper objects
         products_api = ProductsAPI(api_request_context)
         filter_ui = FilterPanel(main_page)
-        catalog = CatalogPage(main_page)
+        catalog = ProductGrid(main_page)
 
         # Step 1: Define the category to be tested
         selected_category = "Pliers"

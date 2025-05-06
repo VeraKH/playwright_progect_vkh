@@ -1,6 +1,6 @@
 from playwright.async_api import Page, expect
 
-class CatalogPage:
+class ProductGrid:
     PRODUCT_TITLE = '[data-test="product-name"]'
 
     def __init__(self, page: Page):

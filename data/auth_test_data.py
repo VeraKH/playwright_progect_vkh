@@ -1,5 +1,12 @@
 
+valid_user = {
+    "email": "customer@practicesoftwaretesting.com",
+    "password": "welcome01",
+    "name": "Jane Doe"
+}
+
 #1 positive user data
+
 valid_users = [
      ({"email": "customer@practicesoftwaretesting.com", "password": "welcome01"}, "Jane Doe")
 ]
